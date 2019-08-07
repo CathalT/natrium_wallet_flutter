@@ -178,6 +178,8 @@ class StateContainerState extends State<StateContainer> {
        initialDeepLink = initialLink;
       });
     });
+    log.info('startNFC - TEST');
+    startNFCSession();
     // Cache ninja API if don't already have it
     checkAndCacheNinjaAPIResponse();
   }
@@ -440,10 +442,14 @@ class StateContainerState extends State<StateContainer> {
   }
 
   void disconnect() {
+    log.info('disconnect - TEST');
+    stopNFCSession();
     sl.get<AccountService>().reset(suspend: true);
   }
 
   void reconnect() {
+    log.info('reconnect - TEST');
+    startNFCSession();
     sl.get<AccountService>().initCommunication(unsuspend: true);
   }
 
