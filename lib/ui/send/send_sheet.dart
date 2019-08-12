@@ -282,7 +282,7 @@ class AppSendSheet {
               Dimens.BUTTON_BOTTOM_DIMENS, onPressed: () {
             try {
               UIUtil.cancelLockEvent();
-              startNFCSession();
+              startNFCSession(AppLocalization.of(context).tapToPay);
             } catch (e) {
               stopNFCSession();
             }
@@ -293,7 +293,6 @@ class AppSendSheet {
     );
   }
 
-  //A method for showing or hiding the NFC button, (show on iOS only)
   _withOrWithoutNFCSendOptions(BuildContext context, StateSetter setState){
     if(Platform.isIOS) {
       return _sendOptionsWithNFC(context, setState);
