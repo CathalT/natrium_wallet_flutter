@@ -122,9 +122,9 @@ class AppLocalization {
       desc: 'intro_new_wallet_seed_copied', name: 'seedCopied');
   }
 
-  String get tapToPay {
-    return Intl.message('Tap to pay',
-        desc: 'send_tap_to_pay', name: 'tapToPay');
+  String get contactless {
+    return Intl.message('Contactless',
+        desc: 'send_contactless', name: 'contactless');
   }
 
   String get scanQrCode {

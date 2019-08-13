@@ -278,11 +278,11 @@ class AppSendSheet {
           AppButton.buildAppButton(
               context,
               AppButtonType.PRIMARY_OUTLINE,
-              AppLocalization.of(context).tapToPay,
+              AppLocalization.of(context).contactless,
               Dimens.BUTTON_BOTTOM_DIMENS, onPressed: () {
             try {
               UIUtil.cancelLockEvent();
-              startNFCSession(AppLocalization.of(context).tapToPay);
+              startNFCSession(AppLocalization.of(context).contactless);
             } catch (e) {
               stopNFCSession();
             }
