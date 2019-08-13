@@ -287,7 +287,7 @@ class AppSendSheet {
           onRightPressed: () {
             try {
               UIUtil.cancelLockEvent();
-              startNFCSession(AppLocalization.of(context).contactless);
+              startNFCSession("");
             } catch (e) {
               stopNFCSession();
             }
