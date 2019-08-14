@@ -127,11 +127,6 @@ class AppLocalization {
         desc: 'send_contactless', name: 'contactless');
   }
 
-  String get scanQr {
-    return Intl.message('Scan QR',
-        desc: 'send_scan_qr', name: 'scanQr');
-  }
-
   String get scanQrCode {
     return Intl.message('Scan QR Code',
       desc: 'send_scan_qr_code', name: 'scanQrCode');

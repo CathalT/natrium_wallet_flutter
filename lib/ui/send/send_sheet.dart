@@ -26,6 +26,7 @@ import 'package:natrium_wallet_flutter/ui/util/formatters.dart';
 import 'package:natrium_wallet_flutter/ui/util/ui_util.dart';
 import 'package:natrium_wallet_flutter/util/numberutil.dart';
 import 'package:natrium_wallet_flutter/util/caseconverter.dart';
+import 'package:natrium_wallet_flutter/util/deviceutil.dart';
 
 class AppSendSheet {
   FocusNode _sendAddressFocusNode;
@@ -278,7 +279,7 @@ class AppSendSheet {
         AppButton.buildAppButtonSplit(
           context,
           AppButtonType.PRIMARY_OUTLINE,
-          AppLocalization.of(context).scanQr,
+          AppLocalization.of(context).scanQrCode,
           AppLocalization.of(context).contactless,
           Dimens.BUTTON_BOTTOM_DIMENS,
           onLeftPressed: () {
@@ -298,10 +299,14 @@ class AppSendSheet {
   }
 
   _withOrWithoutNFCSendOptions(BuildContext context, StateSetter setState){
-    if(Platform.isIOS) {
-      return _sendOptionsWithNFC(context, setState);
-    }
-    return _sendOptionsWithoutNFC(context, setState);
+    return FutureBuilder(
+      future: DeviceUtil.supportsNFCReader(),
+      builder: (BuildContext context, AsyncSnapshot<bool> nfcReaderAvailable) {
+        if(nfcReaderAvailable.hasData && nfcReaderAvailable.data){
+          return _sendOptionsWithNFC(context, setState);
+        }
+        return _sendOptionsWithoutNFC(context, setState);
+  });
   }
 
   mainBottomSheet(BuildContext context) {
