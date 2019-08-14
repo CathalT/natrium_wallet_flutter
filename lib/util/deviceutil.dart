@@ -33,8 +33,11 @@ class DeviceUtil {
     }
     IosDeviceInfo deviceInfo = await DeviceInfoPlugin().iosInfo;
     String version = deviceInfo.systemVersion;
-    double dVersion = double.parse(version);
-    return dVersion >= 11.0;
+    List<String> l = version.split('.');
+    if(l.length > 0){
+      return int.parse(l.elementAt(0)) >= 11;
+    }
+    return false;
   }
 
   static Future<bool> supportsNFCReader() async{
